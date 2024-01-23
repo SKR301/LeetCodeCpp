@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        string vowel = "";
+
+        for (int a = 0; a < s.length(); a++) {
+            if (s[a] == 'a' || s[a] == 'e' || s[a] == 'i' || s[a] == 'o' ||
+                s[a] == 'u' || s[a] == 'A' || s[a] == 'E' || s[a] == 'I' ||
+                s[a] == 'O' || s[a] == 'U') {
+                vowel += s[a];
+            }
+        }
+
+        int vowelInd = 0;
+        int vowelLen = vowel.length() - 1;
+        int a = 0;
+        while (a < s.length() && vowelInd <= vowelLen) {
+            if (s[a] == 'a' || s[a] == 'e' || s[a] == 'i' || s[a] == 'o' ||
+                s[a] == 'u' || s[a] == 'A' || s[a] == 'E' || s[a] == 'I' ||
+                s[a] == 'O' || s[a] == 'U') {
+                s[a] = vowel.back();
+                vowel.pop_back();
+            }
+            a++;
+        }
+
+        return s;
+    }
+};
