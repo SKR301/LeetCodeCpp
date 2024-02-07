@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int a = 1, count = 1;
+        while (a < chars.size()) {
+            if (chars[a] == chars[a - 1]) {
+                count++;
+                chars.erase(chars.begin() + a);
+            } else {
+                int inc;
+                if (count != 1) {
+                    inc = 0;
+                    while (count) {
+                        int d = count % 10;
+                        count /= 10;
+                        chars.insert(chars.begin() + a, (char)(d) + 48);
+                        inc++;
+                    }
+                }
+                a++;
+                if (count != 1) {
+                    a += inc;
+                }
+                count = 1;
+            }
+        }
+
+        int inc;
+        if (count != 1) {
+            inc = 0;
+            while (count) {
+                int d = count % 10;
+                count /= 10;
+                chars.insert(chars.begin() + a, (char)(d) + 48);
+                inc++;
+            }
+        }
+        a++;
+        if (count != 1) {
+            a += inc;
+        }
+        return chars.size();
+    }
+};
