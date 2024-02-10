@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        if (nums.size() < 2) {
+            return 0;
+        }
+
+        unordered_map<int, int> map;
+        int count = 0;
+        int size = nums.size();
+
+        for (int a = 0; a < size; a++) {
+            if (nums[a] < k) {
+                if (map.find(k - nums[a]) != map.end()) {
+                    if (map[k - nums[a]] != 0) {
+                        count++;
+                        map[k - nums[a]]--;
+                    } else {
+                        map[nums[a]]++;
+                    }
+                } else {
+                    map[nums[a]]++;
+                }
+            }
+        }
+
+        return count;
+    }
+};
