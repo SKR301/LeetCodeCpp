@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
+        int size1 = nums1.size();
+        int size2 = nums2.size();
+        unordered_map<int,int> map1;
+        unordered_map<int,int> map2;
+        
+        for(int a=0;a<size1;a++){
+            map1[nums1[a]];
+        }
+
+        for(int a=0;a<size2;a++){
+            map2[nums2[a]];
+        }
+
+        vector<int> notIn1;
+        vector<int> notIn2;
+        for(unordered_map<int,int>::iterator it = map1.begin(); it!=map1.end();it++){
+            if(map2.find(it->first) == map2.end()){
+                notIn2.push_back(it->first);
+            }
+        }
+        
+        for(unordered_map<int,int>::iterator it = map2.begin(); it!=map2.end();it++){
+            if(map1.find(it->first) == map1.end()){
+                notIn1.push_back(it->first);
+            }
+        }
+
+    return {notIn2, notIn1};
+    }
+};
