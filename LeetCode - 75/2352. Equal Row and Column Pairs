@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int equalPairs(vector<vector<int>>& grid) {
+        int size = grid.size();
+
+        map<vector<int>, int> mapRow;
+        map<vector<int>, int> mapCol;
+        string str = "";
+
+        for (int a = 0; a < size; a++) {
+            mapRow[grid[a]]++;
+        }
+
+        int temp;
+
+        for (int a = 0; a < size; a++) {
+            for (int b = a + 1; b < size; b++) {
+                temp = grid[a][b];
+                grid[a][b] = grid[b][a];
+                grid[b][a] = temp;
+            }
+        }
+
+        for (int a = 0; a < size; a++) {
+            mapCol[grid[a]]++;
+        }
+
+        int sum = 0;
+        for (map<vector<int>, int>::iterator it = mapRow.begin();
+             it != mapRow.end(); it++) {
+            if (mapCol.find(it->first) != mapCol.end()) {
+                sum += mapCol[it->first] * mapRow[it->first];
+            }
+        }
+
+        return sum;
+    }
+};
