@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        if (asteroids.size() <= 1) {
+            return asteroids;
+        }
+
+        stack<int> stkAst;
+        int size = asteroids.size();
+
+        stkAst.push(asteroids[0]);
+        for (int a = 1; a < size; a++) {
+            stkAst.push(asteroids[a]);
+
+            while (stkAst.size() > 1) {
+                int ast2 = stkAst.top();
+                stkAst.pop();
+                int ast1 = stkAst.top();
+                stkAst.pop();
+
+                if (ast1 > 0 & ast2 < 0) {
+                    if (abs(ast1) > abs(ast2)) {
+                        stkAst.push(ast1);
+                    }
+                    if (abs(ast1) < abs(ast2)) {
+                        stkAst.push(ast2);
+                    }
+                } else {
+                    stkAst.push(ast1);
+                    stkAst.push(ast2);
+                    break;
+                }
+            }
+        }
+
+        vector<int> res;
+        while (!stkAst.empty()) {
+            res.push_back(stkAst.top());
+            stkAst.pop();
+        }
+
+        reverse(res.begin(), res.end());
+
+        return res;
+    }
+};
