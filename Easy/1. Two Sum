@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         map<int, int> valMap;
-        vector<int> res;
 
         int size = nums.size();
         for (int a = 0; a < size; a++) {
@@ -13,6 +12,6 @@ public:
             }
         }
 
-        return res;
+        return {};
     }
 };
