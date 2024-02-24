@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> valMap;
+        vector<int> res;
+
+        int size = nums.size();
+        for (int a = 0; a < size; a++) {
+            if (valMap.find(target - nums[a]) != valMap.end()) {
+                return {a, valMap[target - nums[a]]};
+            } else {
+                valMap.insert({nums[a], a});
+            }
+        }
+
+        return res;
+    }
+};
